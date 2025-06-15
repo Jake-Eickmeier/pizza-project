@@ -10,3 +10,8 @@ Also understand that in some circumstances, I may opt to use a piece of technolo
 Here is the most recent snapshot of what the entire architecture will look like, made in Miro. Most major interactions will be dictated, but some will be omitted to maintain clarity and readability.Note that revisions may be made as I make further development progress.
 ![Pizza Architecture](resources/PizzaArchitecture.PNG)
 
+
+## How to run
+Start by running `docker-compose up -d` in the root directory of this project. Each microservice within will have its dependencies arranged within that docker-compose. 
+Then, run whichever service you desire. At time of writing, only pizza-menu is available but later on when more services are available there will be a script to take care of running. Service will be available on port 8080, and the mongodb can be accessed using the uri in the service's application.properties file if desired.
+
