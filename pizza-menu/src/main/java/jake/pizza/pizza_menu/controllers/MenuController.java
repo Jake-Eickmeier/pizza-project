@@ -23,7 +23,6 @@ public class MenuController {
         return new String("Hello ");
     }
 
-    // TODO: Convert here and elsewhere from type Pizza to PizzaDTO
     @GetMapping("/test/mongoDb")
     public List<PizzaDTO> getAllPizzas() {
         return pizzaMenuService.findAll();

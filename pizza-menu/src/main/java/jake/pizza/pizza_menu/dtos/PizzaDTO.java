@@ -13,8 +13,6 @@ public record PizzaDTO(
 
     public PizzaDTO(Pizza pizza) {
         this(pizza.getId().toHexString(), pizza.getName(), pizza.getToppings());
-
-        // this(pizza.getId().toString(), pizza.getName(), pizza.getToppings());
     }
 
     public Pizza toPizza() {
