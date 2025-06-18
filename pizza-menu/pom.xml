@@ -12,7 +12,7 @@
 	<artifactId>pizza-menu</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pizza-menu</name>
-	<description>Demo project for Spring Boot</description>
+	<description>A service that provides the available pizzas to the frontend.</description>
 	<url/>
 	<licenses>
 		<license/>
