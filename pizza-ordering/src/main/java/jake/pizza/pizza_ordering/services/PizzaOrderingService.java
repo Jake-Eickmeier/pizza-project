@@ -10,4 +10,10 @@ import jake.pizza.pizza_ordering.dtos.PizzaOrderDTO;
 public interface PizzaOrderingService {
 
     List<PizzaOrderDTO> findAll();
+
+    void processPizzaOrder(PizzaOrderDTO pizzaOrder);
+
+    boolean completePurchase(PizzaOrderDTO pizzaOrder);
+
+    void publishPizzaPurchase(PizzaOrderDTO pizzaOrder);
 }

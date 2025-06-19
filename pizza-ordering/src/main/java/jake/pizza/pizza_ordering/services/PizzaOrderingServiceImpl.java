@@ -2,18 +2,25 @@ package jake.pizza.pizza_ordering.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import jake.pizza.pizza_ordering.dtos.PizzaOrderDTO;
+import jake.pizza.pizza_ordering.messaging.OrderPublishingService;
 import jake.pizza.pizza_ordering.repositories.PizzaOrderRepository;
 
 @Service
 public class PizzaOrderingServiceImpl implements PizzaOrderingService {
 
     private final PizzaOrderRepository pizzaOrderRepository;
+    private final OrderPublishingService orderPublishingService;
 
-    public PizzaOrderingServiceImpl(PizzaOrderRepository pizzaOrderRepository) {
+    @Value("${pizza.orders.topic}")
+    private String topicName;
+
+    public PizzaOrderingServiceImpl(PizzaOrderRepository pizzaOrderRepository, OrderPublishingService orderPublishingService) {
         this.pizzaOrderRepository = pizzaOrderRepository;
+        this.orderPublishingService = orderPublishingService;
     }
 
     @Override
@@ -23,4 +30,25 @@ public class PizzaOrderingServiceImpl implements PizzaOrderingService {
                 .map(PizzaOrderDTO::new)
                 .toList();
     }
+
+    @Override
+    public boolean completePurchase(PizzaOrderDTO pizzaOrder) {
+        // TODO: Implement payment processing to third-party e.g. Adyen
+        return true;
+    }
+
+    @Override
+    public void publishPizzaPurchase(PizzaOrderDTO pizzaOrder) {
+        orderPublishingService.sendMessage(topicName, pizzaOrder.toString());
+    }
+
+    @Override
+    public void processPizzaOrder(PizzaOrderDTO pizzaOrder) {
+        if (completePurchase(pizzaOrder)) {
+            publishPizzaPurchase(pizzaOrder);
+            // TODO: Save to pizzaOrders MongoDB collection
+        }
+    }
+
+    
 }
