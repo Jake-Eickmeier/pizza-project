@@ -10,4 +10,8 @@ import jake.pizza.pizza_ordering.models.PizzaOrder;
 public interface PizzaOrderRepository {
 
     public List<PizzaOrder> findAll();
+
+    public PizzaOrder findOne(String id);
+
+    public PizzaOrder save(PizzaOrder pizzaOrder);
 }

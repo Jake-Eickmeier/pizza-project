@@ -16,4 +16,8 @@ public interface PizzaOrderingService {
     boolean completePurchase(PizzaOrderDTO pizzaOrder);
 
     void publishPizzaPurchase(PizzaOrderDTO pizzaOrder);
+
+    void savePizzaOrderToDatabase(PizzaOrderDTO pizzaOrder);
+
+    void republishPizzaOrderToClient(String id);
 }

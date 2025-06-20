@@ -11,9 +11,10 @@ import com.mongodb.TransactionOptions;
 import com.mongodb.WriteConcern;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
-
+import org.bson.types.ObjectId;
 import jakarta.annotation.PostConstruct;
 import jake.pizza.pizza_ordering.models.PizzaOrder;
+import static com.mongodb.client.model.Filters.eq;
 
 @Repository
 public class MongoDBPizzaOrderRepositoryImpl implements PizzaOrderRepository {
@@ -38,6 +39,17 @@ public class MongoDBPizzaOrderRepositoryImpl implements PizzaOrderRepository {
     @Override
     public List<PizzaOrder> findAll() {
         return pizzaOrderCollection.find().into(new ArrayList<>());
+    }
+
+    @Override
+    public PizzaOrder save(PizzaOrder pizzaOrder) {
+        pizzaOrderCollection.insertOne(pizzaOrder);
+        return pizzaOrder;
+    }
+
+    @Override
+    public PizzaOrder findOne(String id) {
+        return pizzaOrderCollection.find(eq("_id", new ObjectId(id))).first();
     }
 
 }

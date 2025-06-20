@@ -3,6 +3,8 @@ package jake.pizza.pizza_ordering.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,11 +34,10 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String processPizzaOrder(@RequestBody PizzaOrderDTO pizzaOrderDTO) {
-        //TODO: process POST request
+    public ResponseEntity<PizzaOrderDTO> processPizzaOrder(@RequestBody PizzaOrderDTO pizzaOrderDTO) {
         pizzaOrderingService.processPizzaOrder(pizzaOrderDTO);
         
-        return "Success";
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
     
 

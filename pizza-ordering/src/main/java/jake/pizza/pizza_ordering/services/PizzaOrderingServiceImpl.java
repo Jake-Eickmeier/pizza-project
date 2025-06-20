@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import jake.pizza.pizza_ordering.dtos.PizzaOrderDTO;
 import jake.pizza.pizza_ordering.messaging.OrderPublishingService;
 import jake.pizza.pizza_ordering.repositories.PizzaOrderRepository;
+import jake.pizza.pizza_ordering.models.PizzaOrder;
 
 @Service
 public class PizzaOrderingServiceImpl implements PizzaOrderingService {
@@ -46,8 +47,19 @@ public class PizzaOrderingServiceImpl implements PizzaOrderingService {
     public void processPizzaOrder(PizzaOrderDTO pizzaOrder) {
         if (completePurchase(pizzaOrder)) {
             publishPizzaPurchase(pizzaOrder);
-            // TODO: Save to pizzaOrders MongoDB collection
+            savePizzaOrderToDatabase(pizzaOrder);
         }
+    }
+
+    @Override
+    public void savePizzaOrderToDatabase(PizzaOrderDTO pizzaOrder) {
+        pizzaOrderRepository.save(pizzaOrder.toPizzaOrder());
+    }
+
+    @Override
+    public void republishPizzaOrderToClient(String id) {
+        PizzaOrder pizzaOrder = pizzaOrderRepository.findOne(id);
+        publishPizzaPurchase(new PizzaOrderDTO(pizzaOrder));
     }
 
     
