@@ -1,18 +1,8 @@
 package jake.pizza.pizza_reviews.models;
 
 // import java.util.Date;
-import java.time.LocalDateTime;
-
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
-
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Document(indexName = "pizza-reviews")
 public class PizzaReview {
@@ -24,15 +14,13 @@ public class PizzaReview {
 
     private String userName;
 
-    @Field(type = FieldType.Date, format = DateFormat.date_hour_minute_second_millis)
-    // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private LocalDateTime reviewDate;
+    private String reviewDate;
 
     private int stars;
 
     private String comment;
 
-    public PizzaReview(String id, String pizzaName, String userName, LocalDateTime reviewDate,
+    public PizzaReview(String id, String pizzaName, String userName, String reviewDate,
             int stars, String comment) {
         this.id = id;
         this.pizzaName = pizzaName;
@@ -69,11 +57,11 @@ public class PizzaReview {
         this.userName = userName;
     }
 
-    public LocalDateTime getReviewDate() {
+    public String getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDateTime reviewDate) {
+    public void setReviewDate(String reviewDate) {
         this.reviewDate = reviewDate;
     }
 

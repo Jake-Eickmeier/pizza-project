@@ -1,16 +1,6 @@
 package jake.pizza.pizza_reviews.dtos;
 
-import java.util.Date;
-import java.time.LocalDateTime;
-
 import org.bson.types.ObjectId;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.data.elasticsearch.annotations.FieldType;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.DateFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 
 import jake.pizza.pizza_reviews.models.PizzaReview;
 
@@ -18,9 +8,9 @@ public record PizzaReviewDTO(
         String id,
         String pizzaName,
         String userName,
-        @Field(type = FieldType.Date, format = DateFormat.date_hour_minute_second_millis)
-        // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        LocalDateTime reviewDate,
+        // TODO: Accept null reviewdate and populate on creation
+        // Only date itself e.g. yyyy-mm-dd should be required for this type of field
+        String reviewDate,
         int stars,
         String comment) {
 

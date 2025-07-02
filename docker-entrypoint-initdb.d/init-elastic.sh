@@ -14,7 +14,7 @@ curl --location --request PUT 'localhost:9200/pizza-reviews' \
       "id": {"type": "text"},
       "pizzaName": {"type": "text"},
       "userName": {"type": "text"},
-      "reviewDate": {"type": "date", "format":"yyyy-MM-dd'\''T'\''HH:mm:ss.SSS"},
+      "reviewDate": {"type": "text"},
       "stars": { "type": "integer" },
       "comment": {"type": "text",
                     "fields": {

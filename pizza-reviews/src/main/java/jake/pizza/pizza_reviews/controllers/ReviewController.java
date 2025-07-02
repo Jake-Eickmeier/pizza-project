@@ -54,9 +54,9 @@ public class ReviewController {
     }
     
     @GetMapping("/reviews/search/{keyword}")
-    public ResponseEntity<List<Hit<PizzaReviewDTO>>> searchPizzaReviewDTOsByKeyword(@PathVariable String keyword) throws ElasticsearchException, IOException {
-        List<Hit<PizzaReviewDTO>> pizzaReviewDTOHits = pizzaReviewService.searchReviewsByKeyword(keyword);
-        ResponseEntity<List<Hit<PizzaReviewDTO>>> response = new ResponseEntity<List<Hit<PizzaReviewDTO>>>(pizzaReviewDTOHits, HttpStatus.OK);
+    public ResponseEntity<List<PizzaReviewDTO>> searchPizzaReviewDTOsByKeyword(@PathVariable String keyword) throws ElasticsearchException, IOException {
+        List<PizzaReviewDTO> pizzaReviewDTOHits = pizzaReviewService.searchReviewsByKeyword(keyword);
+        ResponseEntity<List<PizzaReviewDTO>> response = new ResponseEntity<>(pizzaReviewDTOHits, HttpStatus.OK);
         return response;
     }
     

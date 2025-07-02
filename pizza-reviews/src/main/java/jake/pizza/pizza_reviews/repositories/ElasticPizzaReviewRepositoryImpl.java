@@ -52,11 +52,6 @@ public class ElasticPizzaReviewRepositoryImpl implements PizzaReviewRepository {
         return pizzaOrder;
     }
 
-    // @Override
-    // public PizzaReview findOne(String id) {
-    //     return pizzaReviewCollection.find(eq("_id", new String(id))).first();
-    // }
-
     @Override
     public Page<PizzaReview> searchSimilar(PizzaReview entity, String[] fields, Pageable pageable) {
         // TODO Auto-generated method stub
