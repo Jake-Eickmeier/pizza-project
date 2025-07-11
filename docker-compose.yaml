@@ -1,13 +1,27 @@
 services:
   mongodb:
-    image: mongo:latest
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-    volumes:
-      - ./docker-entrypoint-initdb.d/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    image: mongo:7
+    container_name: mongodb
     ports:
-    - "27017:27017"
+      - '27017:27017'
+    command: mongod --replSet rs0
+    healthcheck:
+      test: |
+        mongosh --eval "try { rs.status().ok } catch (e) { rs.initiate({ _id: 'rs0', members: [{ _id: 0, host: 'localhost:27017' }] }).ok }"
+      start_period: 0s
+      interval: 500ms
+      timeout: 5s
+      retries: 5
+  # TODO: mongo initialization does not currently work properly due to a connection issue in docker.
+  # Fix this later. Data initialization not mandatory to be automatic for now, can be run manually.
+  # init_mongo:
+  #   image: mongo:7
+  #   depends_on:
+  #     mongodb:
+  #       condition: service_healthy # Wait for MongoDB to be healthy
+  #   command: mongosh --eval "load('./docker-entrypoint-initdb.d/init-mongo.js')"
+  #   volumes:
+  #     - ./docker-entrypoint-initdb.d/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
 
   # https://github.com/conduktor/kafka-stack-docker-compose/tree/master
   zookeeper:
@@ -86,5 +100,4 @@ services:
   #   volumes:
   #     - ./docker-entrypoint-initdb.d/init-elastic.sh:/docker-entrypoint-initdb.d/init-elastic.sh:rw
   #   command: [bash docker-entrypoint-initdb.d/init-elastic.sh]
-
 

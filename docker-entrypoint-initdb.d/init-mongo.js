@@ -3,9 +3,9 @@ db = new Mongo().getDB("test");
 
 
 // Collection and data for pizza menu service
-db.createCollection('pizzamenu', { capped: false });
+db.createCollection('pizzaMenu', { capped: false });
 
-db.pizzamenu.insert([
+db.pizzaMenu.insert([
     {"name": "pepperoni", "toppings": ["cheese", "pepperoni", "sauce"]},
     {"name": "cheese", "toppings": ["cheese"] }
 ]);
