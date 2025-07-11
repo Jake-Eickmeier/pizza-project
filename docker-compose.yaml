@@ -101,5 +101,3 @@ services:
   #     - ./docker-entrypoint-initdb.d/init-elastic.sh:/docker-entrypoint-initdb.d/init-elastic.sh:rw
   #   command: [bash docker-entrypoint-initdb.d/init-elastic.sh]
 
-volumes:
-  mongo1_config:
