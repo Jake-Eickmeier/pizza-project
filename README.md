@@ -1,8 +1,9 @@
 # pizza-project
 A locally hostable pizza shop web app (backend only) where I can practice and demonstrate various technologies in a microservice architecture. To see/pull each microservice, follow the links below:
-[pizza-menu](https://github.com/Jake-Eickmeier/pizza-menu) 
-[pizza-ordering](https://github.com/Jake-Eickmeier/pizza-ordering) 
-[pizza-reviews](https://github.com/Jake-Eickmeier/pizza-reviews) 
+- [pizza-menu](https://github.com/Jake-Eickmeier/pizza-menu) 
+- [pizza-ordering](https://github.com/Jake-Eickmeier/pizza-ordering) 
+- [pizza-reviews](https://github.com/Jake-Eickmeier/pizza-reviews) 
+- [pizza-cart](https://github.com/Jake-Eickmeier/pizza-cart)
 
 ### Disclaimer: 
 Please understand that this project is not finished if you're reading this! This project is meant to be something that I can contribute to piecewise over time, with individually working microservices and functionalities that will eventually end up tying each other together. I will leave a checklist detailing things that I may plan on introducing or refactoring in the future.
