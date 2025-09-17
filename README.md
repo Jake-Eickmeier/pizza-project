@@ -11,7 +11,7 @@ Please understand that this project is not finished if you're reading this! This
 Also understand that in some circumstances, I may opt to use a piece of technology that is slightly less viable than another purely for the purpose of demonstrating more coverage of a wider range of technologies. I will try to leave some remarks in these cases, but don't be too alarmed if you see a relational database squeezed in where non-relational would be better and so-on :smiley: .
 
 ## Architecture
-Here is the most recent snapshot of what the entire architecture will look like, made in Miro. Most major interactions will be dictated, but some will be omitted to maintain clarity and readability.Note that revisions may be made as I make further development progress.
+Here is the most recent snapshot of what the entire architecture will look like, made in Miro. Most major interactions will be dictated, but some will be omitted to maintain clarity and readability. Individual microservices will eventually have their own localized version with more detailed notes on specific functions. Note that revisions may be made as I make further development progress.
 ![Pizza Architecture](resources/PizzaArchitecture.PNG)
 
 
